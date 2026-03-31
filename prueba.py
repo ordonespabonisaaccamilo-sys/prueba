@@ -170,7 +170,7 @@ def menu():
         print("--------------------------------------------")
         op = input("╰┈➤")
         if op == "1":
-            update_student()
+            register_student()
         elif op == "2":
             list_students()
         elif op == "3":
