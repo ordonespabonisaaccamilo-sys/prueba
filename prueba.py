@@ -157,6 +157,32 @@ def update_student():
         print("  WARNING: Invalid status — status was not updated.")
 
     print(f"\n  Student ID {student['id']} updated successfully.")
+ 
+def delete_student():
+    print("\n[ Delete Student ]")
+ 
+    id_input = input("  Enter the ID of the student to delete: ").strip()
+ 
+    if not id_input.isdigit():
+        print("  ERROR: ID must be a number.")
+        return
+ 
+    student = find_student_by_id(int(id_input))
+ 
+    if not student:
+        print(f"  No student found with ID {id_input}.")
+        return
+ 
+    print("\n  Student to delete:")
+    print_student(student)
+ 
+    confirm = input("  Are you sure you want to delete this student? (yes/no): ").strip().lower()
+ 
+    if confirm == "yes":
+        students.remove(student)
+        print(f"  Student '{student['name']}' deleted successfully.")
+    else:
+        print("  Deletion cancelled.")
         
 def menu():
     
@@ -165,7 +191,8 @@ def menu():
         print("1| ➜ 👤 Add student")
         print("2| ➜ 🔎 See student")
         print("3| ➜ 📃 List")
-        print("4| ➜ Update information")
+        print("4| ➜ ♻️ Update information")
+        print("0| ➜ 🗑️ Delete student ")
         print("0| ➜ ❌ Go out")
         print("--------------------------------------------")
         op = input("╰┈➤")
@@ -177,6 +204,8 @@ def menu():
             search_student()
         elif op == "4":
             update_student()
+        elif choice == "5":
+            delete_student()
         elif op == "0":
             break
         else:
